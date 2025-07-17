@@ -102,15 +102,10 @@ def init_qobuz(email, password):
         password = os.environ['']
 
     try:
-        bundle = Bundle()
-app_id = bundle.get_app_id()
-secrets = "\n".join(bundle.get_secrets().values())
+        
+       qobuz.initialize_client(email, password, app_id, secrets)
 
-print(f"App ID: {app_id}")
-
-print("#" * 20)
-
-print(f"Secrets (the first usually works):{secrets}")
+    _handle_commands(qobuz, arguments)
 
     except:
         logger.error('Wrong Credentials')
