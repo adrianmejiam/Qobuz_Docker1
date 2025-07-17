@@ -93,19 +93,58 @@ def my_random_string(string_length=5):
     return random[0:string_length]
 
 
-# Initialize Qobuz Object
-def init_qobuz(email, password):
-    # Set the password and email
-    if not email:
-        email = os.environ['']
-    if not password:
-        password = os.environ['']
+class Qobuz:
+    def __init__(self, email, password):
+        self.email = email
+        self.password = password
+        # Add initialization logic for Qobuz here, like setting up API keys or establishing a session.
+        self.is_logged_in = False
+        self.session = None
 
-    try:
-        
-       qobuz.initialize_client(email, password, app_id, secrets)
+    def login(self):
+        """Logs in to the Qobuz service."""
+        # Replace with actual Qobuz login logic
+        if self.email and self.password:
+            # Example:  self.session = qobuz_api.login(self.email, self.password)
+            self.is_logged_in = True
+            print(f"Logged in to Qobuz with {self.email}")
+        else:
+             print("Email and password are required for login")
 
-    _handle_commands(qobuz, arguments)
+    def logout(self):
+        """Logs out of the Qobuz service."""
+        # Replace with actual Qobuz logout logic
+        if self.session:
+            # Example:  qobuz_api.logout(self.session)
+            self.session = None
+            self.is_logged_in = False
+            print("Logged out of Qobuz")
+
+    def is_authenticated(self):
+      return self.is_logged_in
+
+    def get_user_info(self):
+      """Retrieves user information from Qobuz."""
+      if self.is_authenticated():
+        # Replace with actual Qobuz API call to get user info
+        # Example: user_info = qobuz_api.get_user_info(self.session)
+        user_info = {"email": self.email, "username": "example_user"} # Placeholder
+        print(f"User info: {user_info}")
+        return user_info
+      else:
+        print("User not logged in")
+        return None
+
+# Example usage:
+qobuz_user = Qobuz("user@example.com", "password123")
+qobuz_user.login()
+user_info = qobuz_user.get_user_info()
+qobuz_user.logout()
+
+# Example usage without login:
+qobuz_no_login = Qobuz("","")
+user_info = qobuz_no_login.get_user_info()
+       
 
     except:
         logger.error('Wrong Credentials')
