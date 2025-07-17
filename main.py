@@ -85,9 +85,9 @@ def my_random_string(string_length=5):
 def init_qobuz(email, password):
     # Set the password and email
     if not email:
-        email = os.environ['hiresmusic2@gmail.com']
+        email = os.environ['jo3ksg2ppv@aakk.link']
     if not password:
-        password = os.environ['Mexico_2021']
+        password = os.environ['Mexico2025']
 
     try:
         qobuz.get_tokens()  # get 'app_id' and 'secrets' attrs
