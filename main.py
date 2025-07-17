@@ -23,12 +23,6 @@ print("#" * 20)
 print(f"Secrets (the first usually works):{secrets}")
 
 
-# Register your APP_ID
-qobuz.register_app("YOUR_APP_ID")
-
-# Or register your APP_ID and APP_SECRET
-qobuz.register_app("YOUR_APP_ID", "YOUR_APP_SECRET")
-
 # Default Variables
 TMP_DIR = '/tmp/qobuz/'
 
