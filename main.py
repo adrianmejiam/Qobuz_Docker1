@@ -97,13 +97,14 @@ def my_random_string(string_length=5):
 def init_qobuz(email, password):
     # Set the password and email
     if not email:
-        email = os.environ['jo3ksg2ppv@aakk.link']
+        email = os.environ['']
     if not password:
-        password = os.environ['Mexico2025']
+        password = os.environ['']
 
     try:
-        qobuz.get_tokens()  # get 'app_id' and 'secrets' attrs
-        qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
+        bundle = Bundle()
+app_id = bundle.get_app_id()
+secrets = "\n".join(bundle.get_secrets().values())
     except:
         logger.error('Wrong Credentials')
 
