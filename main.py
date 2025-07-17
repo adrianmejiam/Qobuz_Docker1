@@ -10,6 +10,7 @@ from io import StringIO
 import cherrypy
 from cherrypy.lib import static
 from qobuz_dl.core import QobuzDL
+from qobuz_dl.bundle import Bundle
 
 # Default Variables
 TMP_DIR = '/tmp/qobuz/'
