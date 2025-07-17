@@ -11,6 +11,13 @@ import cherrypy
 from cherrypy.lib import static
 from qobuz_dl.core import QobuzDL
 from qobuz_dl.bundle import Bundle
+import qobuz
+
+# Register your APP_ID
+qobuz.register_app("YOUR_APP_ID")
+
+# Or register your APP_ID and APP_SECRET
+qobuz.register_app("YOUR_APP_ID", "YOUR_APP_SECRET")
 
 # Default Variables
 TMP_DIR = '/tmp/qobuz/'
