@@ -11,7 +11,7 @@ import cherrypy
 from cherrypy.lib import static
 from qobuz_dl.core import QobuzDL
 from qobuz_dl.bundle import Bundle
-import qobuz
+import qobuz-dl
 
 # Register your APP_ID
 qobuz.register_app("YOUR_APP_ID")
