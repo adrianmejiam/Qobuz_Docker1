@@ -146,9 +146,6 @@ qobuz_no_login = Qobuz("","")
 user_info = qobuz_no_login.get_user_info()
        
 
-    except:
-        logger.error('Wrong Credentials')
-
 
 # Serve index.html
 class Stringdownload(object):
