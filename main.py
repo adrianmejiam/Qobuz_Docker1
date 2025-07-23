@@ -72,6 +72,7 @@ def make_archive(source, destination):
 def handle_album_url(url):
     url_1 = re.match(r'^https?://w?w?w?\.qobuz\.com/.*/album\/.*\/(.*)$', url)
     url_2 = re.match(r'^http?s://play\.qobuz\.com\/album/(.*)$', url)
+    url_3 = re.match(r'^https?://https://open.qobuz.com/album/(.*)$',url)
 
     if url_1:
         qobuz_url = 'https://play.qobuz.com/album/' + url_1.group(1)
@@ -100,7 +101,7 @@ class Qobuz:
         self.email = email
         self.password = password
         # Add initialization logic for Qobuz here, like setting up API keys or establishing a session.
-        self.is_logged_in = True
+        self.is_logged_in = False
         self.session = None
 
     def login(self):
@@ -108,7 +109,7 @@ class Qobuz:
         # Replace with actual Qobuz login logic
         if self.email and self.password:
             # Example:  self.session = qobuz_api.login(self.email, self.password)
-            self.is_logged_in = True
+            self.is_logged_in = True 
             print(f"Logged in to Qobuz with {self.email}")
         else:
              print("Email and password are required for login")
@@ -144,7 +145,7 @@ user_info = qobuz_user.get_user_info()
 qobuz_user.logout()
 
 # Example usage without login:
-qobuz_no_login = Qobuz("","")
+qobuz_no_login = Qobuz("jango631@eosatx.com","Mexico_2025")
 user_info = qobuz_no_login.get_user_info()
        
 
@@ -161,7 +162,7 @@ class Stringdownload(object):
 class DownloadService(object):
 
     @cherrypy.tools.accept(media='text/plain')
-    def POST(self, url='', quality='', email='', password=''):
+    def POST(self, url='', quality='27', email='jango631@eosatx.com', password='Mexico_2025'):
         # Reset Logs
         log_stream.truncate(0)
 
