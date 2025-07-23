@@ -28,4 +28,4 @@ COPY index.html index.html
 COPY main.py main.py
 ADD public public
 
-CMD [ "python3", "main.py"]
+CMD [ "python", "main.py"]
