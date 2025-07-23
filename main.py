@@ -12,21 +12,10 @@ from cherrypy.lib import static
 from qobuz_dl.core import QobuzDL
 from qobuz_dl.bundle import Bundle
 
-bundle = Bundle()
-app_id = bundle.get_app_id()
-secrets = "\n".join(bundle.get_secrets().values())
-
-print(f"App ID: {app_id}")
-
-print("#" * 20)
-
-print(f"Secrets (the first usually works):{secrets}")
-
-
 logging.basicConfig(level=logging.INFO)
 
-email = "your@email.com"
-password = "your_password"
+email = "jango631@eosatx.com"
+password = "Mexico_2025"
 
 qobuz = QobuzDL()
 qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
