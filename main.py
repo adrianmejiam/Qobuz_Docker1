@@ -139,7 +139,7 @@ class Qobuz:
         return None
 
 # Example usage:
-qobuz_user = Qobuz("user@example.com", "password123")
+qobuz_user = Qobuz("jango631@eosatx.com", "Mexico_2025")
 qobuz_user.login()
 user_info = qobuz_user.get_user_info()
 qobuz_user.logout()
@@ -147,8 +147,6 @@ qobuz_user.logout()
 # Example usage without login:
 qobuz_no_login = Qobuz("jango631@eosatx.com","Mexico_2025")
 user_info = qobuz_no_login.get_user_info()
-       
-
 
 # Serve index.html
 class Stringdownload(object):
