@@ -21,7 +21,7 @@ qobuz = QobuzDL()
 qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
 qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
 
-qobuz.handle_url("https://play.qobuz.com/album/jown557razhvc")
+qobuz.handle_url("https://play.qobuz.com/album/")
 
 
 # Default Variables
@@ -74,13 +74,15 @@ def handle_album_url(url):
     url_1 = re.match(r'^https?://w?w?w?\.qobuz\.com/.*/album\/.*\/(.*)$', url)
     url_2 = re.match(r'^http?s://play\.qobuz\.com\/album/(.*)$', url)
     url_3 = re.match(r'^https://play.qobuz.com/album/(.*)$',url)
-
+    url_4 = re.match(r'https://www.qobuz.com/us-en/album/.*\/(.*)$', url)
     if url_1:
         qobuz_url = 'https://play.qobuz.com/album/' + url_1.group(1)
     elif url_2:
         qobuz_url = 'https://play.qobuz.com/album/' + url_2.group(1)
     elif url_3:
         qobuz_url = 'https://open.qobuz.com/album/' + url_3.group(1)
+    elif url_4:    
+        qobuz_url = 'https://www.qobuz.com/us-en/album/' + url_3.group(1)
     else:
         qobuz_url = ''
         logger.error('Only Albums can be downloaded.')
@@ -102,7 +104,7 @@ class Qobuz:
         self.email = email
         self.password = password
         # Add initialization logic for Qobuz here, like setting up API keys or establishing a session.
-        self.is_logged_in = True
+        self.is_logged_in = False
         self.session = None
 
     def login(self):
@@ -110,7 +112,7 @@ class Qobuz:
         # Replace with actual Qobuz login logic
         if self.email and self.password:
             # Example:  self.session = qobuz_api.login(self.email, self.password)
-            self.is_logged_in = True 
+            self.is_logged_in = False 
             print(f"Logged in to Qobuz with {self.email}")
         else:
              print("Email and password are required for login")
