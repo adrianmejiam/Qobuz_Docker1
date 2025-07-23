@@ -1,2 +1,2 @@
 CherryPy 
-qobuz-dl 
+qobuz-dl 0.9.9.10
