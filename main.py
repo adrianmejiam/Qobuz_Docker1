@@ -23,6 +23,18 @@ print("#" * 20)
 print(f"Secrets (the first usually works):{secrets}")
 
 
+logging.basicConfig(level=logging.INFO)
+
+email = "your@email.com"
+password = "your_password"
+
+qobuz = QobuzDL()
+qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
+qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
+
+qobuz.handle_url("https://play.qobuz.com/album/va4j3hdlwaubc")
+
+
 # Default Variables
 TMP_DIR = '/tmp/qobuz/'
 
@@ -72,7 +84,7 @@ def make_archive(source, destination):
 def handle_album_url(url):
     url_1 = re.match(r'^https?://w?w?w?\.qobuz\.com/.*/album\/.*\/(.*)$', url)
     url_2 = re.match(r'^http?s://play\.qobuz\.com\/album/(.*)$', url)
-    url_3 = re.match(r'^https?://https://open.qobuz.com/album/(.*)$',url)
+    url_3 = re.match(r'^https://play.qobuz.com/album/va4j3hdlwaubc/(.*)$',url)
 
     if url_1:
         qobuz_url = 'https://play.qobuz.com/album/' + url_1.group(1)
