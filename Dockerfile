@@ -3,8 +3,8 @@ FROM ubuntu:20.04
 LABEL maintainer="Dehaeze Thomas <dehaeze.thomas@gmail.com>"
 
 ENV \
-  QOBUZNAME="jango631@eosatx.com" \
-  QOBUZPASS="Mexico_2025" \
+  QOBUZNAME="" \
+  QOBUZPASS="" \
   PUID="" \
   PGID=""
 
@@ -17,7 +17,7 @@ RUN \
   echo "**** install runtime packages ****" && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
-      python3.4 \
+      python3.9 \
       python3-pip
 
 WORKDIR /app
@@ -28,4 +28,4 @@ COPY index.html index.html
 COPY main.py main.py
 ADD public public
 
-CMD [ "python", "main.py"]
+CMD [ "python3", "main.py"]
