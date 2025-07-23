@@ -78,7 +78,7 @@ def handle_album_url(url):
     elif url_2:
         qobuz_url = 'https://play.qobuz.com/album/' + url_2.group(1)
     elif url_3:
-        qobuz_url = https://open.qobuz.com/album/' + url_3.group(1)
+        qobuz_url = 'https://open.qobuz.com/album/' + url_3.group(1)
     else:
         qobuz_url = ''
         logger.error('Only Albums can be downloaded.')
