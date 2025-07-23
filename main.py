@@ -77,6 +77,8 @@ def handle_album_url(url):
         qobuz_url = 'https://play.qobuz.com/album/' + url_1.group(1)
     elif url_2:
         qobuz_url = 'https://play.qobuz.com/album/' + url_2.group(1)
+    elif url_3:
+        qobuz_url = https://open.qobuz.com/album/' + url_3.group(1)
     else:
         qobuz_url = ''
         logger.error('Only Albums can be downloaded.')
@@ -98,7 +100,7 @@ class Qobuz:
         self.email = email
         self.password = password
         # Add initialization logic for Qobuz here, like setting up API keys or establishing a session.
-        self.is_logged_in = False
+        self.is_logged_in = True
         self.session = None
 
     def login(self):
@@ -117,7 +119,7 @@ class Qobuz:
         if self.session:
             # Example:  qobuz_api.logout(self.session)
             self.session = None
-            self.is_logged_in = False
+            self.is_logged_in = True
             print("Logged out of Qobuz")
 
     def is_authenticated(self):
