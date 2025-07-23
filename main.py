@@ -14,8 +14,8 @@ from qobuz_dl.bundle import Bundle
 
 logging.basicConfig(level=logging.INFO)
 
-email = ""
-password = ""
+email = "jango631@eosatx.com"
+password = "Mexico_2025"
 
 qobuz = QobuzDL()
 qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
@@ -102,7 +102,7 @@ class Qobuz:
         self.email = email
         self.password = password
         # Add initialization logic for Qobuz here, like setting up API keys or establishing a session.
-        self.is_logged_in = False
+        self.is_logged_in = True
         self.session = None
 
     def login(self):
@@ -121,7 +121,7 @@ class Qobuz:
         if self.session:
             # Example:  qobuz_api.logout(self.session)
             self.session = None
-            self.is_logged_in = True
+            self.is_logged_in = False
             print("Logged out of Qobuz")
 
     def is_authenticated(self):
@@ -140,13 +140,13 @@ class Qobuz:
         return None
 
 # Example usage:
-qobuz_user = Qobuz("jango631@eosatx.com", "Mexico_2025")
+qobuz_user = Qobuz("", "")
 qobuz_user.login()
 user_info = qobuz_user.get_user_info()
 qobuz_user.logout()
 
 # Example usage without login:
-qobuz_no_login = Qobuz("jango631@eosatx.com","Mexico_2025")
+qobuz_no_login = Qobuz("","")
 user_info = qobuz_no_login.get_user_info()
 
 # Serve index.html
@@ -161,7 +161,7 @@ class Stringdownload(object):
 class DownloadService(object):
 
     @cherrypy.tools.accept(media='text/plain')
-    def POST(self, url='', quality='27', email='jango631@eosatx.com', password='Mexico_2025'):
+    def POST(self, url='', quality='27', email='', password=''):
         # Reset Logs
         log_stream.truncate(0)
 
