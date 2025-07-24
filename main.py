@@ -5,12 +5,12 @@ import requests
 import shutil
 import uuid
 import re
-from io import StringIO
-
 import cherrypy
+import base64
+
+from io import StringIO
 from cherrypy.lib import static
 from qobuz_dl.core import QobuzDL
-import base64
 from collections import OrderedDict
 from requests import Session
 
@@ -27,9 +27,10 @@ log_handler = logging.StreamHandler(log_stream)
 logger = logging.getLogger('qobuz_dl')
 logger.setLevel(logging.DEBUG)
 for handler in logger.handlers:
-    logger.removeHandler(handler)
+logger.removeHandler(handler)
 logger.addHandler(log_handler)
-logger = logging.getLogger(__name__)
+
+logger = logging.getLogger('qobuz_dl')
 
 _SEED_TIMEZONE_REGEX = re.compile(
     r'[a-z]\.initialSeed\("(?P<seed>[\w=]+)",window\.utimezone\.(?P<timezone>[a-z]+)\)'
