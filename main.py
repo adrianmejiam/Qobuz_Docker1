@@ -14,8 +14,8 @@ from qobuz_dl.core import QobuzDL
 
 logging.basicConfig(level=logging.INFO)
 
-email = "your@email.com"
-password = "your_password"
+email = "jango631@eosatx.com"
+password = "Mexico_2025"
 
 qobuz = QobuzDL()
 qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
