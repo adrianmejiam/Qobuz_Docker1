@@ -11,6 +11,18 @@ import cherrypy
 from cherrypy.lib import static
 from qobuz_dl.core import QobuzDL
 
+
+logging.basicConfig(level=logging.INFO)
+
+email = "your@email.com"
+password = "your_password"
+
+qobuz = QobuzDL()
+qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
+qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
+
+qobuz.handle_url("https://open.qobuz.com/track/33933680")
+
 # Default Variables
 TMP_DIR = '/tmp/qobuz/'
 
