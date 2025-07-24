@@ -30,7 +30,7 @@ for handler in logger.handlers:
 logger.removeHandler(handler)
 logger.addHandler(log_handler)
 
-logger = logging.getLogger('qobuz_dl')
+logger = logging.getLogger(__name__)
 
 _SEED_TIMEZONE_REGEX = re.compile(
     r'[a-z]\.initialSeed\("(?P<seed>[\w=]+)",window\.utimezone\.(?P<timezone>[a-z]+)\)'
@@ -98,7 +98,6 @@ class Bundle:
                 "".join(secrets[secret_pair])[:-44]
             ).decode("utf-8")
         return secrets
-
 
 # Initialize Qobuz object
 qobuz = QobuzDL(quality=7, directory=TMP_DIR)
