@@ -27,7 +27,7 @@ log_handler = logging.StreamHandler(log_stream)
 logger = logging.getLogger('qobuz_dl')
 logger.setLevel(logging.DEBUG)
 for handler in logger.handlers:
-logger.removeHandler(handler)
+    logger.removeHandler(handler)
 logger.addHandler(log_handler)
 
 logger = logging.getLogger(__name__)
