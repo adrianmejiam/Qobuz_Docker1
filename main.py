@@ -12,22 +12,16 @@ from cherrypy.lib import static
 from qobuz_dl.core import QobuzDL
 import base64
 from collections import OrderedDict
-
 from requests import Session
-
-logging.basicConfig(level=logging.INFO)
-
-email = "jango631@eosatx.com"
-password = "Mexico_2025"
-
-qobuz = QobuzDL()
-qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
-qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
 
 # Default Variables
 TMP_DIR = '/tmp/qobuz/'
 
 # Initialize the logs
+logging.basicConfig(level=logging.INFO)
+
+email = "jango631@eosatx.com"
+password = "Mexico_2025"
 log_stream = StringIO()
 log_handler = logging.StreamHandler(log_stream)
 logger = logging.getLogger('qobuz_dl')
@@ -107,7 +101,9 @@ class Bundle:
 
 # Initialize Qobuz object
 qobuz = QobuzDL(quality=7, directory=TMP_DIR)
-
+qobuz = QobuzDL()
+qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
+qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
 
 # Clean TMP Directory
 def clean_tmp_dir():
@@ -197,6 +193,9 @@ class DownloadService(object):
         try:
             # Intialize Qobuz
             init_qobuz(email, password)
+            qobuz = QobuzDL()
+            qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
+            qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
 
             # Set wanted quality
             qobuz.quality = quality
@@ -246,7 +245,9 @@ class DownloadZipService(object):
         try:
             # Intialize Qobuz
             init_qobuz(email, password)
-
+            qobuz = QobuzDL()
+            qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
+            qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
             # Set wanted quality
             qobuz.quality = quality
 
