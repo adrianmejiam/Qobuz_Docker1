@@ -21,7 +21,7 @@ qobuz = QobuzDL()
 qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
 qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
 
-qobuz.handle_url("https://play.qobuz.com/album/")
+qobuz.handle_url("https://play.qobuz.com/album/jown557razhvc")
 
 
 # Default Variables
