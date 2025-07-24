@@ -3,21 +3,21 @@ FROM ubuntu:20.04
 LABEL maintainer="Dehaeze Thomas <dehaeze.thomas@gmail.com>"
 
 ENV \
-  QOBUZNAME="jango631@eosatx.com" \
-  QOBUZPASS="Mexico_2025" \
+  QOBUZNAME="" \
+  QOBUZPASS="" \
   PUID="" \
   PGID=""
 
 RUN \
   groupadd -g 1000 appuser && \
   useradd -r -u 1000 -g appuser appuser
-  
+
 
 RUN \
   echo "**** install runtime packages ****" && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
-      python3.11 \
+      python3.9 \
       python3-pip
 
 WORKDIR /app
