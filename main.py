@@ -46,8 +46,6 @@ qobuz = QobuzDL()
 qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
 qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
 
-qobuz.handle_url("https://open.qobuz.com/track/33933680")
-
 # Default Variables
 TMP_DIR = '/tmp/qobuz/'
 
@@ -127,7 +125,8 @@ def init_qobuz(email, password):
         password = os.environ['QOBUZPASS']
 
     try:
-        qobuz.get_tokens()  # get 'app_id' and 'secrets' attrs
+        qobuz = QobuzDL()
+        qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
         qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
     except:
         logger.error('Wrong Credentials')
