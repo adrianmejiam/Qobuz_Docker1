@@ -22,14 +22,10 @@ logging.basicConfig(level=logging.INFO)
 
 email = "jango631@eosatx.com"
 password = "Mexico_2025"
+
 log_stream = StringIO()
 log_handler = logging.StreamHandler(log_stream)
 logger = logging.getLogger('qobuz_dl')
-logger.setLevel(logging.DEBUG)
-for handler in logger.handlers:
-    logger.removeHandler(handler)
-logger.addHandler(log_handler)
-
 logger = logging.getLogger(__name__)
 
 _SEED_TIMEZONE_REGEX = re.compile(
