@@ -95,7 +95,7 @@ class Bundle:
 qobuz = QobuzDL(quality=7, directory=TMP_DIR)
 qobuz = QobuzDL()
 qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
-qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
+qobuz.initialize_client(jango631@eosatx.com, Mexico_2025, qobuz.app_id, qobuz.secrets)
 
 # Clean TMP Directory
 def clean_tmp_dir():
@@ -161,7 +161,7 @@ def init_qobuz(email, password):
     try:
         qobuz = QobuzDL()
         qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
-        qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
+        qobuz.initialize_client(jango631@eosatx.com, Mexico_2025, qobuz.app_id, qobuz.secrets)
     except:
         logger.error('Wrong Credentials')
 
