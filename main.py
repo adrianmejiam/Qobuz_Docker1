@@ -10,19 +10,6 @@ from io import StringIO
 import cherrypy
 from cherrypy.lib import static
 from qobuz_dl.core import QobuzDL
-from qobuz_dl.bundle import Bundle
-
-logging.basicConfig(level=logging.INFO)
-
-email = "jango631@eosatx.com"
-password = "Mexico_2025"
-
-qobuz = QobuzDL()
-qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
-qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
-
-qobuz.handle_url("https://play.qobuz.com/album/jown557razhvc")
-
 
 # Default Variables
 TMP_DIR = '/tmp/qobuz/'
@@ -73,16 +60,11 @@ def make_archive(source, destination):
 def handle_album_url(url):
     url_1 = re.match(r'^https?://w?w?w?\.qobuz\.com/.*/album\/.*\/(.*)$', url)
     url_2 = re.match(r'^http?s://play\.qobuz\.com\/album/(.*)$', url)
-    url_3 = re.match(r'^https://play.qobuz.com/album/(.*)$',url)
-    url_4 = re.match(r'https://www.qobuz.com/us-en/album/.*\/(.*)$', url)
+
     if url_1:
         qobuz_url = 'https://play.qobuz.com/album/' + url_1.group(1)
     elif url_2:
         qobuz_url = 'https://play.qobuz.com/album/' + url_2.group(1)
-    elif url_3:
-        qobuz_url = 'https://open.qobuz.com/album/' + url_3.group(1)
-    elif url_4:    
-        qobuz_url = 'https://www.qobuz.com/us-en/album/' + url_3.group(1)
     else:
         qobuz_url = ''
         logger.error('Only Albums can be downloaded.')
@@ -99,57 +81,20 @@ def my_random_string(string_length=5):
     return random[0:string_length]
 
 
-class Qobuz:
-    def __init__(self, email, password):
-        self.email = email
-        self.password = password
-        # Add initialization logic for Qobuz here, like setting up API keys or establishing a session.
-        self.is_logged_in = False
-        self.session = None
+# Initialize Qobuz Object
+def init_qobuz(email, password):
+    # Set the password and email
+    if not email:
+        email = os.environ['QOBUZNAME']
+    if not password:
+        password = os.environ['QOBUZPASS']
 
-    def login(self):
-        """Logs in to the Qobuz service."""
-        # Replace with actual Qobuz login logic
-        if self.email and self.password:
-            # Example:  self.session = qobuz_api.login(self.email, self.password)
-            self.is_logged_in = False 
-            print(f"Logged in to Qobuz with {self.email}")
-        else:
-             print("Email and password are required for login")
+    try:
+        qobuz.get_tokens()  # get 'app_id' and 'secrets' attrs
+        qobuz.initialize_client(email, password, qobuz.app_id, qobuz.secrets)
+    except:
+        logger.error('Wrong Credentials')
 
-    def logout(self):
-        """Logs out of the Qobuz service."""
-        # Replace with actual Qobuz logout logic
-        if self.session:
-            # Example:  qobuz_api.logout(self.session)
-            self.session = None
-            self.is_logged_in = False
-            print("Logged out of Qobuz")
-
-    def is_authenticated(self):
-      return self.is_logged_in
-
-    def get_user_info(self):
-      """Retrieves user information from Qobuz."""
-      if self.is_authenticated():
-        # Replace with actual Qobuz API call to get user info
-        # Example: user_info = qobuz_api.get_user_info(self.session)
-        user_info = {"email": self.email, "username": "example_user"} # Placeholder
-        print(f"User info: {user_info}")
-        return user_info
-      else:
-        print("User not logged in")
-        return None
-
-# Example usage:
-qobuz_user = Qobuz("", "")
-qobuz_user.login()
-user_info = qobuz_user.get_user_info()
-qobuz_user.logout()
-
-# Example usage without login:
-qobuz_no_login = Qobuz("","")
-user_info = qobuz_no_login.get_user_info()
 
 # Serve index.html
 class Stringdownload(object):
@@ -163,7 +108,7 @@ class Stringdownload(object):
 class DownloadService(object):
 
     @cherrypy.tools.accept(media='text/plain')
-    def POST(self, url='', quality='27', email='', password=''):
+    def POST(self, url='', quality='', email='', password=''):
         # Reset Logs
         log_stream.truncate(0)
 
