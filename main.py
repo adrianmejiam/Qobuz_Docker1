@@ -18,10 +18,6 @@ from requests import Session
 TMP_DIR = '/tmp/qobuz/'
 
 # Initialize the logs
-logging.basicConfig(level=logging.INFO)
-
-email = "jango631@eosatx.com"
-password = "Mexico_2025"
 
 log_stream = StringIO()
 log_handler = logging.StreamHandler(log_stream)
